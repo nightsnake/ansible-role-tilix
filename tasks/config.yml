@@ -1,40 +1,42 @@
 ---
 # Configure Tilix
 - name: install dconf
-  dnf:
+  package:
     name: dconf
     state: present
   become: yes
   become_user: root
+  when: ansible_os_family == "RedHat"
+
 - name: backup current Tilix preferences
   shell: dconf dump /com/gexperts/Tilix/ > {{ tilix_preferences_backup_file }}
   args:
     creates: "{{ tilix_preferences_backup_file }}"
   register: created_backup
+
+- name: Copy preferences candidate to remote server
+  copy:
+    src: preferences
+    dest: /tmp/tilix_preferences
+
 - name: get checksum of preferences
   stat:
-    path: "{{ role_path }}/files/preferences"
-    get_checksum: True
-    checksum_algorithm: sha1
+    path: /tmp/tilix_preferences
+    get_checksum: yes
+    checksum_algorithm: sha256
   register: preferences_checksum
+
 - name: get checksum of preferences backup
   stat:
     path: "{{ tilix_preferences_backup_file }}"
-    get_checksum: True
-    checksum_algorithm: sha1
+    get_checksum: yes
+    checksum_algorithm: sha256
   register: backup_checksum
+
 - name: load Tilix preferences
-  shell: |
-      set -o pipefail
-      echo -e "{{ lookup('file', 'preferences') }}" | dconf load /com/gexperts/Tilix/
+  become: yes
+  become_user: "{{ lookup('env','USER') }}"
+  shell: dbus-launch dconf load / </tmp/tilix_preferences
   args:
       executable: /bin/bash
   when: preferences_checksum.stat.checksum != backup_checksum.stat.checksum
-- name: delete preferences backup
-  file:
-    path: "{{ tilix_preferences_backup_file }}"
-    state: absent
-  when: >
-    preferences_checksum.stat.checksum == backup_checksum.stat.checksum and
-    created_backup.changed
-...
