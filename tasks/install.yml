@@ -1,7 +1,7 @@
 ---
 # Install Tilix
 - name: install Tilix
-  dnf:
+  package:
     name: tilix
     state: present
   become: yes
