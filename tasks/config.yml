@@ -36,7 +36,7 @@
 - name: load Tilix preferences
   become: yes
   become_user: "{{ lookup('env','USER') }}"
-  shell: dbus-launch dconf load / </tmp/tilix_preferences
+  shell: dbus-launch dconf load /com/gexperts/Tilix/ </tmp/tilix_preferences
   args:
       executable: /bin/bash
   when: preferences_checksum.stat.checksum != backup_checksum.stat.checksum
