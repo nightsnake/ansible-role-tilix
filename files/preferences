@@ -85,3 +85,7 @@ window-save-state=true
 warn-vte-config-issue=false
 quake-width-percent=100
 terminal-title-show-when-single=true
+session-name='${directory}'
+use-tabs=true
+window-style='normal'
+
