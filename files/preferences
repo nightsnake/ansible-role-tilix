@@ -3,11 +3,11 @@ default='2b7c4080-0ddd-46c5-8f23-563fd3ba789d'
 list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', '3cf9d258-f80d-4851-be24-54657707aad5']
 
 [profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
-foreground-color='#F8F8F2'
+foreground-color='#F8F8F8'
 rewrap-on-resize=true
-visible-name='snake-tilix'
+visible-name='snake-tilix-v030520'
 dim-color-set=false
-palette=['#2E2E34343636', '#F92672', '#4F4FFFFF0000', '#F4BF75', '#72729F9FCFCF', '#AE81FF', '#A1EFE4', '#F8F8F2', '#555557575353', '#F92672', '#5050FFFF0000', '#F4BF75', '#72729F9FCFCF', '#AE81FF', '#A1EFE4', '#F9F8F5']
+palette=['#000000000000', '#CCCC00000000', '#4E4E9A9A0606', '#C4C4A0A00000', '#34346565A4A4', '#757550507B7B', '#060698209A9A', '#D3D3D7D7CFCF', '#2E2E34343636', '#EFEF29292929', '#7373D2D21616', '#FCFCE9E94F4F', '#72729F9FCFCF', '#ADAD7F7FA8A8', '#3434E2E2E2E2', '#EEEEEEEEECEC']
 badge-color-set=false
 use-system-font=false
 cursor-colors-set=false
@@ -18,7 +18,7 @@ font='Ubuntu Mono 12'
 terminal-bell='none'
 scrollback-unlimited=true
 terminal-title=':'
-background-color='#272822'
+background-color='#000000000000'
 
 [profiles/3cf9d258-f80d-4851-be24-54657707aad5]
 cursor-shape='block'
